@@ -39,13 +39,39 @@ function ProductCard({ product, onPreview }: { product: Product; onPreview: (pro
 export function StorefrontShell() {
   const [searchOpen, setSearchOpen] = useState(false)
   const [preview, setPreview] = useState<Product | null>(null)
+  // CSS-based marquee animation will handle infinite smooth scrolling.
   return (
     <div className="min-h-screen bg-background">
       <SiteHeader />
       {searchOpen && <div className="border-b bg-card px-5 py-4"><div className="mx-auto flex max-w-7xl items-center gap-3"><Search className="size-4 text-muted-foreground" /><Input autoFocus placeholder="Search considered things..." className="border-0 bg-transparent shadow-none focus-visible:ring-0" /><Button variant="ghost" size="icon" onClick={() => setSearchOpen(false)} aria-label="Close search"><X /></Button></div></div>}
       <main className="pt-28">
         <section className="relative mx-auto max-w-7xl px-5 pb-16 pt-8 lg:px-8 lg:pb-24"><div className="relative min-h-[420px] overflow-hidden rounded-2xl bg-muted shadow-sm sm:min-h-[540px] lg:min-h-[620px]"><video className="absolute inset-0 size-full object-cover" autoPlay muted loop playsInline preload="metadata" poster="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=1200&q=85" aria-label="Luxurious cream texture being applied"><source src="https://videos.pexels.com/video-files/3571264/3571264-uhd_2560_1440_25fps.mp4" type="video/mp4" /><source src="https://videos.pexels.com/video-files/4812195/4812195-hd_1920_1080_25fps.mp4" type="video/mp4" />Your browser does not support the video tag.</video><div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent" /><div className="absolute inset-0 flex flex-col justify-center px-8 sm:px-12 lg:px-16"><p className="flex items-center gap-2 text-xs font-medium uppercase tracking-[0.25em] text-white/70"><Sparkles className="size-4" /> The good stuff</p><h1 className="mt-5 max-w-xl font-serif text-5xl leading-[0.98] tracking-tight text-pretty text-white sm:text-6xl lg:text-7xl">Less browsing. <em className="text-rose-300">Better</em> things.</h1><p className="mt-6 max-w-md text-base leading-7 text-white/75">A considered collection of useful, beautiful products — chosen by people who care about the details.</p><div className="mt-8 flex flex-wrap gap-3"><Link href="#shop" className="inline-flex h-10 items-center justify-center gap-1.5 rounded-lg bg-white px-4 text-sm font-medium text-black transition-all hover:bg-white/90">Explore the collection <ArrowRight data-icon="inline-end" /></Link><Link href="#guides" className="inline-flex h-10 items-center justify-center rounded-lg border border-white/40 bg-white/10 px-4 text-sm font-medium text-white backdrop-blur transition-all hover:bg-white/20">Read our guides</Link></div></div></div></section>
-        <section id="categories" className="mx-auto max-w-7xl px-5 py-16 lg:px-8"><div className="mb-8 flex items-end justify-between"><div><p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Start here</p><h2 className="mt-2 font-serif text-4xl">Shop by feeling</h2></div><Link href="#shop" className="hidden text-sm underline underline-offset-4 sm:block">View all picks</Link></div><div className="grid gap-4 sm:grid-cols-3">{categories.map((category) => <Link href="#shop" key={category.name} className="group relative aspect-[4/3] overflow-hidden"><img src={category.image} alt={category.name} className="size-full object-cover transition duration-500 group-hover:scale-105" /><div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent" /><div className="absolute bottom-5 left-5 text-primary-foreground"><h3 className="font-serif text-2xl">{category.name}</h3><p className="mt-1 text-sm text-primary-foreground/75">{category.count}</p></div></Link>)}</div></section>
+        <section id="categories" className="mx-auto max-w-7xl px-5 py-16 lg:px-8">
+          <div className="mb-8 flex items-end justify-between">
+            <div>
+              <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Start here</p>
+              <h2 className="mt-2 font-serif text-4xl">Shop by feeling</h2>
+            </div>
+            <Link href="#shop" className="hidden text-sm underline underline-offset-4 sm:block">View all picks</Link>
+          </div>
+          <div className="relative overflow-hidden">
+            <div
+              className="marquee flex gap-4 pb-4"
+              aria-label="Shop by feeling carousel"
+            >
+              {[...categories, ...categories].map((category, idx) => (
+                <Link href="#shop" key={`${category.name}-${idx}`} className="group relative min-w-[260px] flex-shrink-0 overflow-hidden rounded-lg">
+                  <img src={category.image} alt={category.name} className="w-full h-44 object-cover transition duration-500 group-hover:scale-105" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent" />
+                  <div className="absolute bottom-4 left-4 text-primary-foreground">
+                    <h3 className="font-serif text-lg">{category.name}</h3>
+                    <p className="mt-1 text-sm text-primary-foreground/75">{category.count}</p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
         <section id="shop" className="mx-auto max-w-7xl px-5 py-16 lg:px-8"><div className="mb-8 flex items-end justify-between"><div><p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">The edit</p><h2 className="mt-2 font-serif text-4xl">Currently considered</h2></div><p className="hidden text-sm text-muted-foreground sm:block">{products.length} thoughtful picks</p></div><div className="grid gap-x-5 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">{products.map((product) => <ProductCard key={product.slug} product={product} onPreview={setPreview} />)}</div></section>
         <section id="guides" className="mx-auto max-w-7xl px-5 py-16 lg:px-8"><div className="grid gap-8 bg-secondary p-6 sm:p-10 lg:grid-cols-[.8fr_1.2fr] lg:items-center"><div><p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">The common room</p><h2 className="mt-3 max-w-md font-serif text-4xl leading-tight">Good choices are easier with a little context.</h2><p className="mt-4 max-w-md leading-7 text-muted-foreground">Practical guides, honest comparisons, and the details that help you buy once and buy well.</p><Button variant="link" className="mt-4 px-0">Read the latest guide <ArrowRight data-icon="inline-end" /></Button></div><div className="grid gap-3 sm:grid-cols-2"><div className="bg-background p-5"><p className="text-xs text-muted-foreground">Field note 014</p><h3 className="mt-12 font-serif text-2xl">How to make a room feel finished</h3><ArrowRight className="mt-8 size-5" /></div><div className="bg-primary p-5 text-primary-foreground"><p className="text-xs text-primary-foreground/60">Buying guide</p><h3 className="mt-12 font-serif text-2xl">The everyday carry edit</h3><ArrowRight className="mt-8 size-5" /></div></div></div></section>
       </main>

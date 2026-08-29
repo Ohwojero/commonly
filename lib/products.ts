@@ -15,6 +15,12 @@ export const categories = [
   { name: 'Home objects', count: '42 picks', image: 'https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&w=900&q=85' },
   { name: 'Everyday carry', count: '28 picks', image: 'https://images.unsplash.com/photo-1523779917675-b6ed3a42a561?auto=format&fit=crop&w=900&q=85' },
   { name: 'Outdoors', count: '36 picks', image: 'https://images.unsplash.com/photo-1473445361085-b9a07f55608b?auto=format&fit=crop&w=900&q=85' },
+  { name: 'Kitchen', count: '18 picks', image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=85' },
+  { name: 'Tech', count: '12 picks', image: 'https://images.unsplash.com/photo-1518779578993-ec3579fee39f?auto=format&fit=crop&w=900&q=85' },
+  { name: 'Garden', count: '9 picks', image: 'https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=900&q=85' },
+  { name: 'Office', count: '14 picks', image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=900&q=85' },
+  { name: 'Travel', count: '11 picks', image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=85' },
+  { name: 'Gifts', count: '20 picks', image: 'https://images.unsplash.com/photo-1488900128323-21503983a07e?auto=format&fit=crop&w=900&q=85' },
 ]
 
 export const formatNumber = (value: number) => new Intl.NumberFormat('en-US').format(value)
