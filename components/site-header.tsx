@@ -40,7 +40,7 @@ export function SiteHeader() {
 
 export function SiteFooter() {
   return (
-    <footer className="mt-12 border-t border-primary/30 px-5 py-14 lg:px-8" style={{ backgroundColor: 'var(--primary)' }}>
+    <footer className="mt-12 border-t border-primary/30 px-5 py-14 lg:px-8" style={{ backgroundColor: 'var(--primary)', position: 'relative', zIndex: 70 }}>
       <div className="mx-auto grid max-w-7xl gap-12 md:grid-cols-[1.3fr_1fr_1fr]">
         <div>
           <Link href="/" className="inline-block"><img src="/placeholder-logo.svg" alt="Commonly" className="h-10" /></Link>
