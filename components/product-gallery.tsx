@@ -1,7 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { ChevronDown, Flag, Heart, Share2, Star } from 'lucide-react'
+import { ChevronDown, Flag, Heart, Share2, Star, ArrowLeft } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { products } from '@/lib/products'
@@ -17,6 +18,7 @@ const galleryImages = (product: Product) => [
 ]
 
 export function ProductGallery({ product }: { product: Product }) {
+  const router = useRouter()
   const images = galleryImages(product)
   const [activeImage, setActiveImage] = useState(0)
   const [openSection, setOpenSection] = useState<string | null>('highlights')
@@ -36,6 +38,11 @@ export function ProductGallery({ product }: { product: Product }) {
   return (
     <div className="bg-background">
       <div className="h-[112px]" />
+      <div className="mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8">
+        <button type="button" onClick={() => router.back()} className="mb-4 flex items-center gap-2 text-sm text-muted-foreground md:hidden">
+          <ArrowLeft className="size-5" /> Back
+        </button>
+      </div>
       <div className="mx-auto grid max-w-[1280px] gap-8 px-4 pb-6 pt-6 sm:px-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(360px,.85fr)] lg:gap-10 lg:px-8 lg:pb-10 lg:pt-10">
         <section className="grid min-w-0 grid-cols-[56px_minmax(0,1fr)] gap-4 lg:grid-cols-[64px_minmax(0,1fr)]">
           <div className="flex flex-col gap-3">

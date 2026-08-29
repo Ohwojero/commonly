@@ -38,7 +38,30 @@ export function SiteHeader() {
   </>
 }
 
-export function SiteFooter() { return <footer className="border-t px-5 py-14 lg:px-8"><div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-3"><div><Link href="/" className="inline-block"><img src="/placeholder-logo.svg" alt="Commonly" className="h-10" /></Link><p className="mt-4 max-w-xs text-sm leading-6 text-muted-foreground">Useful things, thoughtfully found.</p></div><div className="flex flex-col gap-3 text-sm text-muted-foreground"><Link href="/about">About us</Link><Link href="/how-it-works">How it works</Link><Link href="/contact">Contact</Link></div><div className="flex flex-col gap-3 text-sm text-muted-foreground"><Link href="/#shop">Shop all</Link><Link href="/auth/register">Join the community</Link></div></div><div className="mx-auto mt-12 max-w-7xl border-t pt-5 text-xs text-muted-foreground">© 2026 Commonly. We may earn a commission from qualifying links.</div></footer> }
+export function SiteFooter() {
+  return (
+    <footer className="mt-12 border-t border-primary/30 px-5 py-14 lg:px-8" style={{ backgroundColor: 'var(--primary)' }}>
+      <div className="mx-auto grid max-w-7xl gap-12 md:grid-cols-[1.3fr_1fr_1fr]">
+        <div>
+          <Link href="/" className="inline-block"><img src="/placeholder-logo.svg" alt="Commonly" className="h-10" /></Link>
+          <p className="mt-4 max-w-xs text-sm leading-6 text-primary-foreground/80">Useful things, thoughtfully found.</p>
+        </div>
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary-foreground/90">Explore</p>
+          <div className="mt-4 flex flex-col gap-3 text-sm text-primary-foreground/80"><Link href="/about">About us</Link><Link href="/how-it-works">How it works</Link><Link href="/contact">Contact</Link></div>
+        </div>
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary-foreground/90">Community</p>
+          <div className="mt-4 flex flex-col gap-3 text-sm text-primary-foreground/80"><Link href="/#shop">Shop all</Link><Link href="/auth/register">Join the community</Link></div>
+        </div>
+      </div>
+      <div className="mx-auto mt-14 flex max-w-7xl flex-col gap-3 border-t border-primary/20 pt-5 text-xs text-primary-foreground/80 sm:flex-row sm:items-center sm:justify-between">
+        <span>© 2026 Commonly. We may earn a commission from qualifying links.</span>
+        <span>All rights reserved.</span>
+      </div>
+    </footer>
+  )
+}
 
 export function SiteChrome({ children }: { children: React.ReactNode }) { return <div className="min-h-screen bg-background"><SiteHeader />{children}<SiteFooter /></div> }
 export default SiteHeader
